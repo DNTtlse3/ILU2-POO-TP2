@@ -2,6 +2,7 @@ package frontiere;
 
 import controleur.ControlEmmenager;
 
+
 public class BoundaryEmmenager {
 	private ControlEmmenager controlEmmenager;
 
@@ -28,11 +29,16 @@ public class BoundaryEmmenager {
 
 				case 2:
 					//TODO a completer
+					System.out.println("Bienvenu "+nomVisiteur);
+					int force  = Clavier.entrerEntier("Quelle est votre force?");
+					controlEmmenager.ajouterGaulois(nomVisiteur, force);
+					
 					break;
 
 				default:
 					System.out
 							.println("Vous devez choisir le chiffre 1 ou 2 !");
+					emmenager(nomVisiteur);
 					break;
 				}
 			} while (choixUtilisateur != 1 && choixUtilisateur != 2);
@@ -41,5 +47,17 @@ public class BoundaryEmmenager {
 
 	private void emmenagerDruide(String nomVisiteur) {
 		//TODO a completer
+		System.out.println("Bienvenu "+nomVisiteur);
+		int forceDruide = Clavier.entrerEntier("Quelle est votre force ?");
+		int minforcePotion,maxforcePotion;
+		do {
+
+			minforcePotion = Clavier.entrerEntier("Quelle est la force de potion la\r\n"
+					+ "plus faible que vous produisez ?");
+			maxforcePotion = Clavier.entrerEntier("Quelle est la force de potion la\r\n"
+					+ "plus faible que vous produisez ?");
+		}
+		while(!((minforcePotion<=maxforcePotion) && (minforcePotion >=0) && (maxforcePotion>=0)));
+		controlEmmenager.ajouterDuide(nomVisiteur, forceDruide, minforcePotion, maxforcePotion);
 	}
 }
