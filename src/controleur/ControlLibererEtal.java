@@ -10,12 +10,10 @@ public class ControlLibererEtal {
 		this.controlTrouverEtalVendeur = controlTrouverEtalVendeur;
 	}
 
-	//TODO a completer
-	public Etal trouverEtalVendeur(String nomVendeur) {
+	public boolean isVendeur(String nomVendeur) {
 		
-		 return controlTrouverEtalVendeur.trouverEtalVendeur(nomVendeur);
+		return controlTrouverEtalVendeur.trouverEtalVendeur(nomVendeur) != null;
 	}
-
 	/**
 	 * 
 	 * @param produit
@@ -25,8 +23,15 @@ public class ControlLibererEtal {
 	 *         quantité de produit vendu
 	 */
 	public String[] libererEtal(String nomVendeur) {
-		//TODO a completer
+		
 		String[] donneesEtal = null;
+		
+		Etal etalCourant = controlTrouverEtalVendeur.trouverEtalVendeur(nomVendeur);
+		
+		donneesEtal = etalCourant.etatEtal();
+		
+		etalCourant.libererEtal();
+		
 		return donneesEtal;
 	}
 
