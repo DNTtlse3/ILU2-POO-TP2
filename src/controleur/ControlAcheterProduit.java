@@ -28,7 +28,13 @@ public class ControlAcheterProduit {
 			String[] nomVendeur = new String[tailleStandard];
 		
 			for(int k = 0; k<tailleStandard;k++) {
-				nomVendeur[k] = vendeur[k].getNom();
+				
+				String nom = vendeur[k].getNom();
+				
+				Etal etal = controlTrouverEtalVendeur.trouverEtalVendeur(nom);
+				if((etal != null) && etal.isEtalOccupe()) {
+					nomVendeur[k] = nom;
+				}
 			}
 			
 			return nomVendeur;
