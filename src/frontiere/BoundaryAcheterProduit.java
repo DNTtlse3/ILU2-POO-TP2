@@ -43,8 +43,9 @@ public class BoundaryAcheterProduit {
 			quantite = Clavier.entrerEntier("Combien de "+produitDemande+" voulez-vous "
 					+ "acheter ?");
 			
-			controlAcheterProduit.acheterProduitMarcher(vendeur, quantite);
+			String ctrl = controlAcheterProduit.acheterProduitMarcher(vendeur, quantite);
 			
+			System.out.println(ctrl);
 		}
 		else {
 			System.out.println("Désolé le produit que vous demandez est indisponible et n'apparaît sur aucun étal"

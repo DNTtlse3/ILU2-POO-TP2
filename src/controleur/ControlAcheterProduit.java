@@ -30,20 +30,26 @@ public class ControlAcheterProduit {
 			for(int k = 0; k<tailleStandard;k++) {
 				nomVendeur[k] = vendeur[k].getNom();
 			}
-		
+			
 			return nomVendeur;
+			
 		}else {
 			return null;
 		}
 	}
 	
-	public void acheterProduitMarcher(String nomVendeur,int quantite) {
+	public String acheterProduitMarcher(String nomVendeur,int quantite) {
 		if(controlVerifierIdentite.verifierIdentite(nomVendeur)) {
 			Etal etal = controlTrouverEtalVendeur.trouverEtalVendeur(nomVendeur);
-			etal.acheterProduit(quantite);
+			if(quantite <= etal.getQuantite()) {
+				etal.acheterProduit(quantite);
+				return "Vous avez acheter "+quantite+" "+etal.getProduit();
+			}else {
+				return "Désolé mon stock est limité, j'ai que "+ etal.getQuantite()+" "+etal.getProduit()+" !";
+			}
 		}
 		else {
-			System.out.println("Ce vendeur n'a pas d'étal dans le village!");
+			return "Apparement, d'apès les sources ce vendeur n'est pas d'ici.";
 		}
 	}
 }

@@ -28,7 +28,7 @@ public class BoundaryLibererEtal {
 			
 			if(bool.equals(etalOccupe)) {
 				System.out.println("Vous avez vendu "
-			+quantiteVendu+" sur"+quantiteInitial+" "+produit+".");
+			+quantiteVendu+" sur "+quantiteInitial+" "+produit+".");
 				System.out.println("Au revoir "+nomVendeur+", passez une bonne journée");
 			}
 		}
