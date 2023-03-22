@@ -18,28 +18,24 @@ public class BoundaryAcheterProduit {
 		
 		String produitDemande = scan.nextLine();
 		
-		String[] tabVendeur = controlAcheterProduit.vendeurAvecProduit(produitDemande);
+		String[] lesVendeurs = controlAcheterProduit.vendeurAvecProduit(produitDemande);
 		
-		if(tabVendeur != null) {
-			int nbVendeur = 1;
-			for(int k = 0; k<tabVendeur.length-1;k++) {
-				System.out.println("-"+nbVendeur+" "+tabVendeur[k]);
-				nbVendeur = k+1;
+		if(lesVendeurs != null) {			
+			for(int k = 0; (k<lesVendeurs.length)&&(lesVendeurs[k]!=null);k++) {
+				System.out.println("|*<--->*|"+(k+1)+" "+lesVendeurs[k]);
 			}
-			
-			int choix,quantite;
+
+			int choix;
 			do {
 				choix = Clavier.entrerEntier("Chez quel commerçant voulez-vous"
 						+ " acheter des "+ produitDemande +"?"
 						+ "\n");
-				
-			}while((choix > nbVendeur));
-			
-			String vendeur = tabVendeur[choix-1];
+			}while((choix > lesVendeurs.length));
+			String vendeur = lesVendeurs[choix-1];
 			
 			System.out.println(nomAcheteur+" se déplace jusqu'à l'étal"
 					+ " du vendeur "+vendeur);
-			
+			int quantite;
 			quantite = Clavier.entrerEntier("Combien de "+produitDemande+" voulez-vous "
 					+ "acheter ?");
 			

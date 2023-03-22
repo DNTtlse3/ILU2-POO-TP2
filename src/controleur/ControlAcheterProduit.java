@@ -19,36 +19,27 @@ public class ControlAcheterProduit {
 	
 	public String[] vendeurAvecProduit(String produit) {
 		
-		Gaulois[] vendeur = village.rechercherVendeursProduit(produit);
+		Gaulois[] vendeurs = village.rechercherVendeursProduit(produit);
+		String[] lesVendeurs = null;
 		
-		if(vendeur != null) {
-		
-			int tailleStandard = vendeur.length;
-		
-			String[] nomVendeur = new String[tailleStandard];
-		
-			for(int k = 0; k<tailleStandard;k++) {
-				
-				String nom = vendeur[k].getNom();
-				
-				Etal etal = controlTrouverEtalVendeur.trouverEtalVendeur(nom);
-				if((etal != null) && etal.isEtalOccupe()) {
-					nomVendeur[k] = nom;
-				}
-			}
-			
-			return nomVendeur;
-			
+		if(vendeurs == null) {
+			return lesVendeurs;
 		}else {
-			return null;
+			lesVendeurs = new String[vendeurs.length];
+			for(int k=0; (k<vendeurs.length);k++) {
+				lesVendeurs[k] = vendeurs[k].getNom();
+			}
 		}
+		return lesVendeurs;
 	}
 	
 	public String acheterProduitMarcher(String nomVendeur,int quantite) {
 		if(controlVerifierIdentite.verifierIdentite(nomVendeur)) {
 			Etal etal = controlTrouverEtalVendeur.trouverEtalVendeur(nomVendeur);
 			if(quantite <= etal.getQuantite()) {
-				etal.acheterProduit(quantite);
+				
+				if(etal != null) etal.acheterProduit(quantite);
+				
 				return "Vous avez acheter "+quantite+" "+etal.getProduit();
 			}else {
 				return "Désolé mon stock est limité, j'ai que "+ etal.getQuantite()+" "+etal.getProduit()+" !";
